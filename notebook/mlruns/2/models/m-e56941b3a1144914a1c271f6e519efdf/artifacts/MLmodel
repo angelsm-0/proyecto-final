@@ -1,0 +1,23 @@
+artifact_path: file:C:/Users/sanch/Documents/universidad_MAIA/ultimo/kmc/mlruns/2/models/m-e56941b3a1144914a1c271f6e519efdf/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.14.2
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.8.0
+    skops_trusted_types: null
+mlflow_version: 3.10.0
+model_id: m-e56941b3a1144914a1c271f6e519efdf
+model_size_bytes: 3175353
+model_uuid: m-e56941b3a1144914a1c271f6e519efdf
+prompts: null
+run_id: 14b33a7ff5fd41a88e947136e1d2bf20
+utc_time_created: '2026-05-17 04:57:32.057326'

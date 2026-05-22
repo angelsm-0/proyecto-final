@@ -1,0 +1,23 @@
+artifact_path: file:C:/Users/sanch/Documents/universidad_MAIA/ultimo/kmc/mlruns/1/models/m-d181dd337be04e578406660040ec78e5/artifacts
+flavors:
+  lightgbm:
+    code: null
+    data: model.pkl
+    lgb_version: 4.6.0
+    model_class: lightgbm.sklearn.LGBMClassifier
+    serialization_format: cloudpickle
+    skops_trusted_types: null
+  python_function:
+    data: model.pkl
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.lightgbm
+    python_version: 3.14.2
+mlflow_version: 3.10.0
+model_id: m-d181dd337be04e578406660040ec78e5
+model_size_bytes: 358720
+model_uuid: m-d181dd337be04e578406660040ec78e5
+prompts: null
+run_id: 4204c5c3c45b47aa8f09c084577b1e8d
+utc_time_created: '2026-05-14 03:25:03.668856'

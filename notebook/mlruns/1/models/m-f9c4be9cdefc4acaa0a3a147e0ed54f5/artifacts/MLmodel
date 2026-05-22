@@ -1,0 +1,22 @@
+artifact_path: file:C:/Users/sanch/Documents/universidad_MAIA/ultimo/kmc/mlruns/1/models/m-f9c4be9cdefc4acaa0a3a147e0ed54f5/artifacts
+flavors:
+  python_function:
+    data: model.ubj
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.xgboost
+    python_version: 3.14.2
+  xgboost:
+    code: null
+    data: model.ubj
+    model_class: xgboost.sklearn.XGBClassifier
+    model_format: ubj
+    xgb_version: 3.2.0
+mlflow_version: 3.10.0
+model_id: m-f9c4be9cdefc4acaa0a3a147e0ed54f5
+model_size_bytes: 267381
+model_uuid: m-f9c4be9cdefc4acaa0a3a147e0ed54f5
+prompts: null
+run_id: f36c046975b34c869df17ff8426a7900
+utc_time_created: '2026-05-17 04:07:20.519840'
