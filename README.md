@@ -9,7 +9,7 @@ Este proyecto implementa un modelo de aprendizaje automático que predice el rie
    ```bash
    pip install -r requirements_dashboard.txt
    # Para entrenamiento (opcional)
-   pip install -r requirements_training.txt
+   pip install -r requirements_entrenamieto.txt
    ```
 3. Ejecutar la aplicación:
    ```bash
@@ -35,19 +35,42 @@ Este proyecto implementa un modelo de aprendizaje automático que predice el rie
 3. **Ejecutar** `streamlit run dashboard.py`.
 4. Para **desplegar en AWS** (EC2) basta con empaquetar la carpeta y ejecutar el mismo comando dentro del contenedor; la configuración de `Procfile` típicamente contiene:
    ```text
-   web: streamlit run dashboard.py --server.port $PORT
+   web: streamlit run dashboard.py
+   
    ```
+##  Ejemplos de uso (inputs/outputs esperados)
+### upload
+#### ID_Paciente,Fecha_Nacimiento,Sexo,CP_TallaMadre,CP_PesoMadre,CP_TallaPadre,CP_PesoPadre,ERN_Peso,ERN_Talla,RCIUtalla,V219,V261,V262,ERN_Sexo
+- 001,2022-02-15,F,158,60,165,70,3.4,48,0.85,84,78,73,1
+- 002,2022-01-10,M,162,62,168,75,3.2,46,0.80,71,88,78,0
+- 003,2022-03-05,F,155,58,160,68,3.5,49,0.90,90,85,80,1
 
-## Ejemplos de uso
+### output
+#### ID_Paciente,Probabilidad_Riesgo,Clasificacion,Riesgo_Alto_Threshold,Modelo_Utilizado
+- 001,0.78,Riesgo Alto,0.20,modelo_3_meses
+- 002,0.12,Bajo Riesgo,0.20,modelo_3_meses
+- 003,0.54,Riesgo Alto,0.20,modelo_3_meses
+
 ### Evaluación de cohorte (CSV)
 1. Subir un archivo CSV con la estructura indicada en `data/template_carga.csv`.
 2. La aplicación genera `informe_riesgo_cohorte_*.csv` con una columna adicional `riesgo_predicho` (valor entre 0‑1).
 
 ### Evaluación individual
-```python
-# En la barra lateral seleccionar "🔮 Evaluación de Pacientes Individuales"
-# Ingresar los valores solicitados (edad, peso, altura, etc.)
-# Pulsar "Predecir riesgo"
-# La app muestra la probabilidad y un mensaje de recomendación.
-```
+
+1. En la barra lateral seleccionar "🔮 Evaluación de Pacientes Individuales"
+2. Ingresar los valores solicitados (edad, peso, altura, etc.)
+3. Pulsar "Predecir riesgo"
+4. La app muestra la probabilidad y un mensaje de recomendación.
+
+##  Consideraciones sobre el modelo
+
+Requisitos mínimos para ejecutar los modelos
+Los tres modelos (3 meses, nacimiento y 40 semanas) están entrenados con algoritmos de boosting basados en árboles (XGBoost y LightGBM) y cada archivo .joblib ocupa menos de 70 KB.
+
+### Hardware
+1. CPU: al menos 2 vCPU (una instancia t3.small de AWS es suficiente).
+2. Memoria RAM: 400 – 500 MB por modelo; con los tres cargados simultáneamente basta con 2 GiB de RAM.
+3. Almacenamiento: 1 GB de disco (EBS gp3) cubre con holgura los modelos y sus metadatos.
+4. GPU: no requerida; la inferencia en CPU es < 0.05 s por mil registros.
+
 
